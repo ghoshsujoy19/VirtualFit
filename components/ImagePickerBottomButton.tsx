@@ -1,46 +1,66 @@
 import React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView, Pressable, Image, Text, StyleSheet } from "react-native";
 
 type ImagePickerBottomButtonsProps = {
-    onImageLibraryPress: () => void;
+    onSaveImage: () => void;
     onCameraPress: () => void;
+    onImageLibraryPress: () => void;
+    onLogout: () => void;
 };
 
 export const ImagePickerBottomButtons = (
     props: ImagePickerBottomButtonsProps
 ) => {
-    const { onCameraPress, onImageLibraryPress } = props;
+    const { onCameraPress, onImageLibraryPress, onSaveImage, onLogout } = props;
     return (
         <SafeAreaView style={styles.buttons}>
             <Pressable style={styles.button} onPress={onImageLibraryPress}>
-                <Image
-                    style={styles.buttonIcon}
-                    source={require("../assets/images/gallary.jpg")}
+                {/* @ts-ignore */}
+                <MaterialCommunityIcons
+                    name="file-upload"
+                    size={30}
+                    color="orange"
                 />
-                <Text style={styles.buttonText}>Gallery</Text>
+                <Text style={styles.buttonText}>Upload File</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={onCameraPress}>
-                <Image
-                    style={styles.buttonIcon}
-                    source={require("../assets/images/camera.png")}
+                {/* @ts-ignore */}
+                <MaterialCommunityIcons
+                    name="camera"
+                    size={30}
+                    color="orange"
                 />
-                <Text style={styles.buttonText}>Camera</Text>
+                <Text style={styles.buttonText}>Take Photo</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={onSaveImage}>
+                {/* @ts-ignore */}
+                <MaterialCommunityIcons
+                    name="content-save"
+                    size={30}
+                    color="orange"
+                />
+                <Text style={styles.buttonText}>Save Image</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={onLogout}>
+                {/* @ts-ignore */}
+                <MaterialCommunityIcons
+                    name="logout"
+                    size={30}
+                    color="orange"
+                />
+                <Text style={styles.buttonText}>Logout</Text>
             </Pressable>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    buttonIcon: {
-        width: 30,
-        height: 30,
-        margin: 10,
-    },
     buttons: {
         backgroundColor: "white",
         flexDirection: "row",
-        borderTopRightRadius: 30,
-        borderTopLeftRadius: 30,
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     button: {
         flex: 1,
